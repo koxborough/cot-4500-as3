@@ -1,3 +1,6 @@
+import numpy as np
+np.set_printoptions(precision=7, suppress=True, linewidth=100)
+
 def function(t, y):
     return t - (y ** 2)
 
@@ -26,6 +29,37 @@ def runge_cutta_method(initial_condition, endpoint_a, endpoint_b, iterations):
 
     return w
 
+def gauss_jordan(matrix):
+    length = len(matrix)
+    list = []
+
+    for i in range(length):
+        max_row = i
+        for j in range(i + 1, length):
+            if abs(matrix[j][i]) > abs(matrix[max_row][i]):
+                max_row = j
+
+        matrix[[i, max_row]] = matrix[[max_row, i]]
+
+        pivot = matrix[i][i]
+        for j in range(i, length + 1):
+            matrix[i][j] /= pivot
+        
+        for j in range(i + 1, length):
+            factor = matrix[j, i]
+            for k in range(length + 1):
+                matrix[j][k] -= (factor * matrix[i][k])
+
+    for i in range(length - 1, -1, -1):
+        for j in range(i - 1, -1, -1):
+            factor = matrix[j, i]
+            for k in range(length + 1):
+                matrix[j][k] -= (factor * matrix[i][k])
+
+    for i in range(length):
+        list.append(int(matrix[i][length]))
+    
+    return list
 
 if __name__ == "__main__":
     # Task One: use Euler's Method to generate approximation of y(t)
@@ -37,3 +71,8 @@ if __name__ == "__main__":
 
     # Task Two: use Runge-Kutta Method (using input from Task One)
     print(runge_cutta_method(initial_condition, endpoint_a, endpoint_b, iterations))
+    print()
+
+    # Task Three: use Gaussian elimination and backward substitution to solve linear system
+    matrix = np.array([[2., -1., 1., 6.], [1., 3., 1., 0.], [-1., 5., 4., -3.]])
+    print(np.array(gauss_jordan(matrix)))
