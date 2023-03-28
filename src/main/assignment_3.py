@@ -61,18 +61,42 @@ def gauss_jordan(matrix):
     
     return list
 
+def lu_factorization(matrix):
+    length = len(matrix)
+    L = np.zeros((length, length))
+    U = np.array(matrix)
+
+    for i in range(length):
+        L[i][i] = 1
+
+    for i in range(length):
+        for j in range(i + 1, length):
+            L[j][i] = (U[j][i] / U[i][i])
+            U[j] -= (L[j][i] * U[i])
+
+    return np.linalg.det(matrix), L, U
+
 if __name__ == "__main__":
     # Task One: use Euler's Method to generate approximation of y(t)
     initial_condition = 1
     endpoint_a, endpoint_b = 0, 2
     iterations = 10
-    print(eulers_method(initial_condition, endpoint_a, endpoint_b, iterations))
-    print()
+    # print(eulers_method(initial_condition, endpoint_a, endpoint_b, iterations))
+    # print()
 
     # Task Two: use Runge-Kutta Method (using input from Task One)
-    print(runge_cutta_method(initial_condition, endpoint_a, endpoint_b, iterations))
-    print()
+    # print(runge_cutta_method(initial_condition, endpoint_a, endpoint_b, iterations))
+    # print()
 
     # Task Three: use Gaussian elimination and backward substitution to solve linear system
     matrix = np.array([[2., -1., 1., 6.], [1., 3., 1., 0.], [-1., 5., 4., -3.]])
-    print(np.array(gauss_jordan(matrix)))
+    # print(np.array(gauss_jordan(matrix)))
+
+    # Task Four: implement LU Factorization and find matrix determinant, L matrix, U matrix
+    matrix = np.array([[1., 1., 0., 3.], [2., 1., -1., 1.], [3., -1., -1., 2.], [-1., 2., 3., -1.]])
+    determinant, L, U = lu_factorization(matrix)
+    print(determinant)
+    print()
+    print(L)
+    print()
+    print(U)
