@@ -81,16 +81,17 @@ if __name__ == "__main__":
     initial_condition = 1
     endpoint_a, endpoint_b = 0, 2
     iterations = 10
-    # print(eulers_method(initial_condition, endpoint_a, endpoint_b, iterations))
-    # print()
+    print(eulers_method(initial_condition, endpoint_a, endpoint_b, iterations))
+    print()
 
     # Task Two: use Runge-Kutta Method (using input from Task One)
-    # print(runge_cutta_method(initial_condition, endpoint_a, endpoint_b, iterations))
-    # print()
+    print(runge_cutta_method(initial_condition, endpoint_a, endpoint_b, iterations))
+    print()
 
     # Task Three: use Gaussian elimination and backward substitution to solve linear system
     matrix = np.array([[2., -1., 1., 6.], [1., 3., 1., 0.], [-1., 5., 4., -3.]])
-    # print(np.array(gauss_jordan(matrix)))
+    print(np.array(gauss_jordan(matrix)))
+    print()
 
     # Task Four: implement LU Factorization and find matrix determinant, L matrix, U matrix
     matrix = np.array([[1., 1., 0., 3.], [2., 1., -1., 1.], [3., -1., -1., 2.], [-1., 2., 3., -1.]])
