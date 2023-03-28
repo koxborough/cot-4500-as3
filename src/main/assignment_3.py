@@ -87,6 +87,14 @@ def diagonally_dominant(matrix):
             return False
     return True
 
+def positive_definitive(matrix):
+    eigenvalues = np.linalg.eigvals(matrix)
+    for val in eigenvalues:
+        if val <= 0:
+            return False
+    
+    return True
+
 if __name__ == "__main__":
     # Task One: use Euler's Method to generate approximation of y(t)
     initial_condition = 1
@@ -117,3 +125,8 @@ if __name__ == "__main__":
     # Task Five: Determine if a matrix is diagonally dominant
     matrix = np.array([[9, 0, 5, 2, 1], [3, 9, 1, 2, 1], [0, 1, 7, 7, 2], [4, 2, 3, 12, 2], [3, 2, 4, 0, 8]])
     print(diagonally_dominant(matrix))
+    print()
+
+    # Task Six: Determine if a amtrix is positive definite
+    matrix = np.array([[2, 2, 1], [2, 3, 0], [1, 0, 2]])
+    print(positive_definitive(matrix))
