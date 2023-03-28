@@ -76,6 +76,17 @@ def lu_factorization(matrix):
 
     return np.linalg.det(matrix), L, U
 
+def diagonally_dominant(matrix):
+    length = len(matrix)
+    for i in range(length):
+        sum = -abs(matrix[i][i])
+        for j in range(length):
+            sum += abs(matrix[i][j])
+        
+        if (abs(matrix[i][i]) < sum):
+            return False
+    return True
+
 if __name__ == "__main__":
     # Task One: use Euler's Method to generate approximation of y(t)
     initial_condition = 1
@@ -101,3 +112,8 @@ if __name__ == "__main__":
     print(L)
     print()
     print(U)
+    print()
+
+    # Task Five: Determine if a matrix is diagonally dominant
+    matrix = np.array([[9, 0, 5, 2, 1], [3, 9, 1, 2, 1], [0, 1, 7, 7, 2], [4, 2, 3, 12, 2], [3, 2, 4, 0, 8]])
+    print(diagonally_dominant(matrix))
