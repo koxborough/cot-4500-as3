@@ -57,7 +57,7 @@ def gauss_jordan(matrix):
                 matrix[j][k] -= (factor * matrix[i][k])
 
     for i in range(length):
-        list.append(int(matrix[i][length]))
+        list.append(matrix[i][length])
     
     return list
 
@@ -100,11 +100,11 @@ if __name__ == "__main__":
     initial_condition = 1
     endpoint_a, endpoint_b = 0, 2
     iterations = 10
-    print(eulers_method(initial_condition, endpoint_a, endpoint_b, iterations))
+    print("%.5f" %eulers_method(initial_condition, endpoint_a, endpoint_b, iterations))
     print()
 
     # Task Two: use Runge-Kutta Method (using input from Task One)
-    print(runge_cutta_method(initial_condition, endpoint_a, endpoint_b, iterations))
+    print("%.5f" %runge_cutta_method(initial_condition, endpoint_a, endpoint_b, iterations))
     print()
 
     # Task Three: use Gaussian elimination and backward substitution to solve linear system
@@ -115,7 +115,7 @@ if __name__ == "__main__":
     # Task Four: implement LU Factorization and find matrix determinant, L matrix, U matrix
     matrix = np.array([[1., 1., 0., 3.], [2., 1., -1., 1.], [3., -1., -1., 2.], [-1., 2., 3., -1.]])
     determinant, L, U = lu_factorization(matrix)
-    print(determinant)
+    print("%.5f" %determinant)
     print()
     print(L)
     print()
